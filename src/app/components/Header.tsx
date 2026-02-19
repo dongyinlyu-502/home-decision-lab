@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCalculator } from '@/app/context/CalculatorContext';
 import { Button } from '@/components/ui/button';
-import { Linkedin, Save, Download, Loader2 } from 'lucide-react';
+import { Linkedin, Save } from 'lucide-react';
 import {
     Select,
     SelectContent,
@@ -13,12 +13,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
-interface HeaderProps {
-    onExportPDF?: () => Promise<void>;
-    isExporting?: boolean;
-}
-
-export function Header({ onExportPDF, isExporting = false }: HeaderProps) {
+export function Header() {
     const {
         profile,
         buyScenario,
@@ -120,29 +115,7 @@ export function Header({ onExportPDF, isExporting = false }: HeaderProps) {
                         <span className="hidden sm:inline">Save Setup</span>
                     </Button>
 
-                    {/* Export PDF */}
-                    {onExportPDF && (
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={onExportPDF}
-                            disabled={isExporting}
-                            className="gap-2 border-indigo-200 text-indigo-700 hover:bg-indigo-50 hover:border-indigo-400 hover:text-indigo-800 transition-all disabled:opacity-70"
-                            title="Export full dashboard as PDF"
-                        >
-                            {isExporting ? (
-                                <>
-                                    <Loader2 className="h-4 w-4 animate-spin" />
-                                    <span className="hidden sm:inline">Generating…</span>
-                                </>
-                            ) : (
-                                <>
-                                    <Download className="h-4 w-4" />
-                                    <span className="hidden sm:inline">Export PDF</span>
-                                </>
-                            )}
-                        </Button>
-                    )}
+
 
                     {/* LinkedIn */}
                     <Button variant="default" size="sm" asChild className="gap-2 bg-[#0077b5] hover:bg-[#006399] text-white">
